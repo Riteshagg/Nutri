@@ -1,0 +1,37 @@
+<?php
+namespace App\Http\Controllers;
+
+use App\User;
+use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
+
+
+class AppointmentsController extends Controller
+{
+
+    public function index(Request $request)
+    {
+
+
+
+    }
+
+    public function create()
+    {
+        $nutritionist_list = array();
+
+        if(Auth::user()->hasRole('Admin'))
+            $nutritionist_list  = User::role('Nutritionist')->orderBy('name','DESC')->get();
+
+        return view('pages.appointments', ['nutritionists' => $nutritionist_list ]);
+    }
+
+    public function store(Request $request)
+    {
+
+
+    }
+}
